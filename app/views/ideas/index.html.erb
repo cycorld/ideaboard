@@ -16,7 +16,7 @@
   <tbody>
     <% @ideas.each do |idea| %>
       <tr>
-        <td><%= idea.user_id %></td>
+        <td><%= idea.user.email %></td>
         <td><%= idea.post %></td>
         <td><%= idea.up %></td>
         <td><%= idea.down %></td>
