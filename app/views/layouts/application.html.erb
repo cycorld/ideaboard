@@ -15,6 +15,7 @@
           <li><%= link_to 'Sign in', new_user_session_path %></li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
         <% else %>
+          <li><%= current_user.email %></li>
           <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
         <% end %>
       </ul>
@@ -31,6 +32,7 @@
   </div>
 
   <footer class="page-footer orange">
+    <!--
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -59,9 +61,10 @@
         </div>
       </div>
     </div>
+    -->
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Made by <a class="orange-text text-lighten-3" href="http://cycorld.com">cycorld</a>
       </div>
     </div>
   </footer>

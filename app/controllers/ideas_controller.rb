@@ -1,5 +1,7 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  before_action :only_owner, only: [:edit, :update, :destroy]
 
   # GET /ideas
   # GET /ideas.json
@@ -72,5 +74,12 @@ class IdeasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
       params.require(:idea).permit(:post)
+    end
+
+    def only_owner
+      unless @idea.user_id == current_user.id
+        flash[:alert] = 'YOU DONT HAVE PERMISSION'
+        redirect_to :back
+      end
     end
 end
