@@ -69,6 +69,12 @@
 $(function() {
   $(".button-collapse").sideNav();
 });
+<% if notice %>
+  Materialize.toast("<%=notice%>", 4000) // 4000 is the duration of the toast
+<% end %>
+<% if alert %>
+  Materialize.toast("<%=alert%>", 4000) // 4000 is the duration of the toast
+<% end %>
 </script>
 </body>
 </html>
