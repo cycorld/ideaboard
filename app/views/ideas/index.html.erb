@@ -1,31 +1,19 @@
 <%= render 'form' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Post</th>
-      <th>Up</th>
-      <th>Down</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ideas.each do |idea| %>
-      <tr>
-        <td><%= idea.user.email %></td>
-        <td><%= idea.post %></td>
-        <td><%= idea.up %></td>
-        <td><%= idea.down %></td>
-        <td><%= link_to 'Show', idea %></td>
-        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-        <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Idea', new_idea_path %>
+<div class="row">
+  <% @ideas.each do |i| %>
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><%= i.user.email.split('@')[0] %></span>
+          <p><%= i.post %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to 'Detail', i %>
+          <%= link_to 'Edit', edit_idea_path(i) %>
+          <%= link_to 'Delete', idea_path(i), method: 'delete' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
