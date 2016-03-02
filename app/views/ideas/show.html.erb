@@ -2,10 +2,33 @@
 <p>
   <%= @idea.post %>
 </p>
-  
 
 <span class="badge"><%= @idea.up %></span>
 <span class="badge"><%= @idea.down %></span>
+
+<%= form_tag comments_path do %>
+  <div class="row">
+    <div class="input-field col s9">
+      <i class="material-icons prefix">mode_edit</i>
+      <input type="hidden" name="idea_id" value="<%=@idea.id%>">
+      <%= text_area_tag :content, nil, class: 'materialize-textarea' %>
+      <%= label_tag :content, 'Type you comment' %><br>
+    </div>
+    <div class="input-field col s3">
+      <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<ol>
+  <% @idea.comments.each do |c| %>
+    <li><%= c.user.email %> : <%= c.content %></li>
+  <% end %>
+</ol>
+
+
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>
