@@ -9,9 +9,14 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Idea Bulletin Board!</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Idea Bulletin Board!</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/users/sign_in">Sign in</a></li>
+        <% unless user_signed_in? %>
+          <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <% else %>
+          <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
+        <% end %>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
